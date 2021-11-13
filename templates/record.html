@@ -1,0 +1,215 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Update Records
+{% endblock %}
+
+{% block main %}
+    <!-- Disable OPH options if "normal" is selected -->
+    <script>
+        // OPH option(avoid choosing normal and other item at the same time)
+        function disable() {
+            var normal = document.getElementById("OPH_normal");
+            
+            if (normal.checked == true) {
+                document.getElementById("NPDR").disabled = true;
+                document.getElementById("PDR").disabled = true;
+                document.getElementById("CSME").disabled = true;
+                document.getElementById("NPDR").checked = false;
+                document.getElementById("PDR").checked = false;
+                document.getElementById("CSME").checked = false;
+            }
+            else {
+                document.getElementById("NPDR").disabled = false;
+                document.getElementById("PDR").disabled = false;
+                document.getElementById("CSME").disabled = false;                
+            }
+        };
+
+        // If BP entered, both SBP and DBP are required
+        function BP() {
+            
+            if (document.getElementById("SBP").value != "") {
+                document.getElementById("DBP").required = true;
+            }
+            if (document.getElementById("DBP").value != "") {
+                document.getElementById("SBP").required = true;
+            }
+            
+        };
+        
+        // Disable future data input
+        document.addEventListener('DOMContentLoaded', function(){
+            var today = {{ today | tojson }};
+            document.getElementById("date").max = today;}
+            );
+        
+    </script>
+
+    <h2 style="text-align:left">Please key in new data</h2>
+
+    <form action="/record" method="post" style="text-align:left">
+        <div>
+            <label for="date">Date of examination: </label>
+            <input class="form-control" id="date" name="date" type="date" required>
+        </div>
+        <br>
+        
+        <table>
+            <!-- BW -->
+            <tr class="table-info">
+                <td>Body weight</td>
+            </tr>
+            <tr style="background-color: white">
+                <td>
+                    <label for="BW">Weight: </label>
+                    <input autocomplete="off" autofocus class="form-control" name="BW" placeholder="kg" type="number" min="20" max="150" step="0.1">
+                     kg
+                </td>
+            </tr>
+            
+            <!-- BP -->
+            <tr class="table-info">
+                <td>Blood pressure</td>
+            </tr>
+            <tr style="background-color: white">
+                <td>
+                    <label for="SBP">BP: </label>
+                    <input autocomplete="off" autofocus class="form-control" name="SBP" id="SBP" placeholder="systolic" type="number" min="50" max="240">
+                    /
+                    <input autocomplete="off" autofocus class="form-control" name="DBP" id="DBP" placeholder="diastolic" type="number" min="20" max="150">
+                    mmHg
+                </td>
+            </tr>
+            
+
+            
+            <!-- Sugar -->
+            <tr class="table-info">
+                <td>Glycemic control</td>
+            </tr>
+            <tr style="background-color: white">
+                <td>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="A1c">HbA1c: </label>
+                            <input type="number" class="form-control" name="A1c" id="A1c" min="4" max="20" step="0.01">%
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="AC">AC sugar: </label>
+                            <input type="number" class="form-control" name="AC" id="AC" min="30" max="1000" step="0.01">mg/dL
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="PC">PC sugar: </label>
+                            <input type="number" class="form-control" name="PC" id="PC" min="30" max="1000" step="0.01">mg/dL
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Lipid -->
+            <tr class="table-info">
+                <td>Lipid profile</td>
+            </tr>
+            <tr style="background-color: white">
+                <td>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="TCHO">TCHO: </label>
+                            <input type="number" class="form-control" name="TCHO" id="TCHO" min="70" max="400" step="0.01"> mg/dL
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="LDL">LDL: </label>
+                            <input type="number" class="form-control" name="LDL" id="LDL" min="30" max="300" step="0.01"> mg/dL
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="HDL">HDL: </label>
+                            <input type="number" class="form-control" name="HDL" id="HDL" min="10" max="150" step="0.01"> mg/dL
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="TG">TG: </label>
+                            <input type="number" class="form-control" name="TG" id="TG" min="30" max="5000" step="0.01"> mg/dL
+                        </div>
+                    </div>                    
+                </td>
+            </tr>
+
+            <!-- Renal function: cre, macroscopic proteinuria, UACR -->
+            <tr class="table-info">
+                <td>Renal function</td>
+            </tr>
+            <tr style="background-color: white">
+                <td>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="Cre">Creatinine: </label>
+                            <input type="number" class="form-control" name="Cre" id="Cre" min="0" max="20" step="0.01"> mg/dL
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="UP_M">Urine protein: </label>
+                            <select name="UP_M" id="UP_M" class="form-control">
+                                <option value="" selected disabled>Choose here</option>
+                                <option value=0>-</option>
+                                <option value=1>1+</option>
+                                <option value=2>2+</option>
+                                <option value=3>3+</option>
+                                <option value=4>4+</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md 3">
+                            <label for="UACR">UACR: </label>
+                            <input type="number" class="form-control" name="UACR" id="UACR" min="0" style="width: 7em"> mg/g
+                        </div>
+                        <div class="form-group col-md 3">
+                            <label for="UPCR">UPCR: </label>
+                            <input type="number" class="form-control" name="UPCR" id="UPCR" min="0" style="width: 7em"> mg/g
+                        </div>
+                    </div>                      
+                </td>
+            </tr>
+
+            <!-- Neurological screening -->
+            <tr class="table-info">
+                <td>Neurological screen</td>
+            </tr>
+            <tr style="background-color: white">
+                <td>
+                    <label for="MNSI">Michigan Neuropathy Screening Instrument score: </label>
+                    <input type="number" class="form-control" name="MNSI" id="MNSI" min="0" max="10" step="0.5"> point(s)
+                </td>
+            </tr>            
+            
+            <!-- OPH -->
+            <tr class="table-info">
+                <td>Ophthalmic examination</td>
+            </tr>
+            <tr style="background-color: white">
+                <td>
+                    <input type="checkbox" id="OPH_normal" name="OPH_normal" value=1 onclick="disable()">
+                    <label for="OPH_normal"> Normal </label> <br>
+                    <input type="checkbox" id="NPDR" name="NPDR" value=1 >
+                    <label for="NPDR"> Non-proliferative diabetic retinopathy </label><br>
+                    <input type="checkbox" id="PDR" name="PDR" value=1 >
+                    <label for="PDR"> Proliferative diabetic retinopathy </label><br>
+                    <input type="checkbox" id="CSME" name="CSME" value=1 >
+                    <label for="CSME"> Clinical significant macular edema </label><br>
+                </td>
+            </tr>            
+            
+            <!-- Vaccine / if you have free time...
+            <tr class="table-info">
+                <td>Vaccine</td>
+            </tr>
+            <tr style="background-color: white">
+                <td>
+                    
+                </td>
+            </tr>            
+            -->
+            
+        </table>
+        <br>
+
+        <button class="btn btn-primary" type="submit" onclick="BP()">Submit</button>
+    </form>
+{% endblock %}

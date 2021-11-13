@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Personal Information
+{% endblock %}
+
+{% block main %}
+    <h2 style="text-align:left">Personal Information</h2>
+
+    <form action="/info" method="post" style="text-align:left">
+        <!-- Get name -->
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name: </label>
+            <div class="col-sm-10">
+                <input autocomplete="off" autofocus class="form-control" class="form-control" name="name" placeholder="Given Name" type="text" required>
+            </div>
+        </div>
+        
+        <!-- Get birthday -->
+        <div class="form-group row">
+            <label for="birth" class="col-sm-2 col-form-label">Date of birth: </label>
+            <div class="col-sm-10">
+                <input class="form-control" name="birth" type="date" required>
+            </div>
+        </div>
+        
+        <!-- Get phone number -->
+        <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Phone number: </label>
+            <div class="col-sm-10">
+                <input autocomplete="off" autofocus class="form-control" class="form-control" name="phone" placeholder="09XXXXXXXX" type="text" maxlength=10 pattern="[0]{1}[9]{1}[0-9]{8}" required>
+            </div>
+        </div>  
+        
+        <!-- Get e-mail -->
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">E-mail: </label>
+            <div class="col-sm-10">
+                <input autocomplete="off" autofocus class="form-control" class="form-control" name="email" id="email" placeholder="email@address.com" type="email" required>
+            </div>
+        </div>  
+        
+        <!-- Get Sex -->
+        <fieldset class="form-group">
+            <div class="row">
+                <label for="sex" class="col-form-label col-sm-2 pt-0">Gender: </label>
+                <div class="col-sm-10">
+                    <div class="form-check-inline">
+                        <input class="form-check-input" name="sex" type="radio" id="female" value="F" required>
+                        <label for="female" class="form-check-label">Female</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" name="sex" type="radio" id="male" value="M">
+                        <label for="male" class="form-check-label">Male</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        
+        <!-- Get Height and weight -->
+        <div class="form-group row">
+            <label for="BW" class="col-sm-2 col-form-label">Weight and Height: </label>
+            <div class="col-sm-10">
+                <input autocomplete="off" autofocus class="form-control" name="BW" placeholder="weight" type="number" min="20" max="150" style="width: 6em" required> kg / 
+                <input autocomplete="off" autofocus class="form-control" class="form-control" name="BH" placeholder="height" type="number" min="100" max="220" style="width: 6em" required> cm
+            </div>
+        </div>  
+        
+        
+        <!-- Get smoking condition -->
+        <fieldset class="form-group">
+            <div class="row">
+                <label for="smoking" class="col-form-label col-sm-2 pt-0">Smoker: </label>
+                <div class="col-sm-10">
+                    <div class="form-check-inline">
+                        <input class="form-check-input" name="smoking" type="radio" id="yes" value="T" required>
+                        <label for="yes" class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" name="smoking" type="radio" id="no" value="F">
+                        <label for="no" class="form-check-label">No</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        
+        
+        <!-- Get Underlying disease condition -->
+        <fieldset class="form-group">
+            <div class="row">
+                <label for="name" class="col-sm-2 col-form-label pt-0">Medical history: </label>
+                <div class="col-sm-10">
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="HTN" name="HTN" value="T">
+                        <label class="form-check-label" for="HTN">Hypertension</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="CAD" name="CAD" value="T">
+                        <label class="form-check-label" for="CAD">Coronary artery disease</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="stroke" name="stroke" value="T">
+                        <label class="form-check-label" for="stroke">Stroke  </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="CHF" name="CHF" value="100">
+                        <label class="form-check-label" for="CHF">Congestive heart failure</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="CKD" name="CKD" value="100">
+                        <label class="form-check-label" for="CKD">Chronic kidney disease</label>
+                    </div>
+                </div>
+            </div>        
+        </fieldset>
+
+        
+        <!-- Get CAD FH condition -->
+        <div class="form-group">
+            <label for="FH">Do you have a family history of early heart disease: </label>
+            <input class="form-control" name="FH" type="radio" id="yes" value="T" required>
+            <label for="female">Yes</label>
+            <input class="form-control" name="FH" type="radio" id="no" value="F">
+            <label for="male">No</label>
+            <p>(heart disease in a male member diagnosed before age 55 years or in a female member diagnosed before age 65 years)</p>
+        </div>
+        
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Personalized Control Target
+{% endblock %}
+
+{% block main %}
+    <p> 
+        <h3>The next suggested follow-up date is:</h3>
+        {% if date_f == today %}
+        <h5>Please schedule an appointment for checkup now!</h5>
+        {% else %}
+        <h4><u>{{ date_f }} </u></h4>
+        {% endif %}
+    </p>
+    
+    <br><br>
+    <!-- Lab TABLE -->
+    <h3>Laboratory Examination</h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Personalized Target</th>
+                <th scope="col">Latest Data</th>
+                <th scope="col">Date</th>
+                <th scope="col">Follow-up Date</th>
+                <!-- Function: Add New data + Trend +/- Suggestions Review -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">HbA1c</th>
+                <td>
+                    {% if A1c_t != -1 %}
+                    < {{ A1c_t }}%
+                    {% else %}
+                    Avoid reliance on A1C**
+                    {% endif %}
+                </td>
+                <td>{{ A1c_l }} {% if A1c_l != "No data" %}% {% endif %}</td>
+                <td>{{ A1c_d }}</td>
+                <td>{{ A1c_f }}</td>
+            </tr>
+            <tr>
+                <th scope="row">AC sugar (before meal)</th>
+                <td>{{ AC_t }}</td>
+                <td>{{ AC_l }} {% if AC_l != "No data" %}mg/dL {% endif %}</td>
+                <td>{{ AC_d }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">PC sugar (2hrs after meal)</th>
+                <td>{{ PC_t }}</td>
+                <td>{{ PC_l }} {% if PC_l != "No data" %}mg/dL {% endif %}</td>
+                <td>{{ PC_d }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">LDL</th>
+                <td> < {{ LDL_t }} mg/dL</td>
+                <td>{{ LDL_l }} {% if LDL_l != "No data" %} mg/dL {% endif %}</td>
+                <td>{{ LDL_d }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">HDL</th>
+                <td> > {{ HDL_t }} mg/dL</td>
+                <td>{{ HDL_l }}{% if HDL_l != "No data" %} mg/dL {% endif %}</td>
+                <td>{{ HDL_d }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">Urine Protein</th>
+                <td>
+                    {% if (UACR == True and UACR_l >= 300) or (UPCR == True and UPCR_l >= 200) or (UPM == True and UPM_l > 2) %}
+                    Maintain renal function
+                    {% elif UACR == True and 30 <= UACR_l < 300 %}
+                    UACR <= {{ UACR_l }} mg/g
+                    {% else %}
+                    UACR < 30 mg/g
+                    {% endif %}
+                </td>
+                <td>
+                    Urine dipstick: {{ UPM_l }}{% if UPM_l != "No data" %}+{% endif %} <br>
+                    {% if UACR == True and (UPCR == False or (UPCR == True and UPCR_l < 200 )) %}
+                    UACR: {{ UACR_l }} mg/g <br>
+                    {% endif %}
+                    {% if UPCR == True and (UACR == False or (UACR == True and UACR_l >= 300)) %}
+                    UPCR: {{ UPCR_l }} mg/g
+                    {% elif UACR == False %}
+                    Suggest check UACR
+                    {% endif %}
+                </td>
+                <td>
+                    {{ UPM_d }} <br>
+                    {% if UACR == True and (UPCR == False or (UPCR == True and UPCR_l < 200 )) %}
+                    {{ UACR_d }} <br>
+                    {% endif %}
+                    {% if UPCR == True and (UACR == False or (UACR == True and UACR_l >= 300)) %}
+                    {{ UPCR_d }}
+                    {% endif %}
+                </td>
+                <td>{{ UP_f }}</td>
+            </tr>
+
+            <!-- Old UP
+            <tr>
+                <th scope="row">Urine Protein</th>
+                <td>
+                    {% if stick == -1 or (stick == 0 and UP_l <= 30) or (stick == 1 and UP_l == 0) %} UACR < 30 mg/g
+                    {% elif stick == 0 %} UACR < {{ UP_l }} mg/g
+                    {% else %} maintain renal function
+                    {% endif %}
+                </td>
+                <td>
+                    {% if stick == 0 %} UACR: {{ UP_l }} mg/g
+                    {% elif stick == 1 and UP_l > 0 %} Urine dipstick: {{ UP_l }}+
+                    {% elif stick == 1 and UP_l == 0 %} Urine dipstick: negative <br> Please check UACR
+                    {% elif stick == -1 %} {{ UP_l }}
+                    {% endif %}
+                </td>
+                <td>{{ UP_d }}</td>
+                <td>{{ UP_f }}</td>
+            </tr>
+            -->
+            <tr>
+                <th scope="row">Creatinine</th>
+                <td>
+                    {% if Cre_l|float <= 1.3 or Cre_l == "No data" %} 0.8-1.3 mg/dL
+                    {% else %} less than {{ Cre_l }} mg/dL {% endif %}
+                </td>
+                <td>{{ Cre_l }} {% if Cre_l != "No data" %} mg/dL {% endif %}</td>
+                <td>{{ Cre_d }}</td>
+                <td>{{ Cre_f }}</td>
+            </tr>
+<!-- Tired...I you have free time
+            <tr>
+                <th scope="row">estimated GFR</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+-->
+        </tbody>
+    </table>
+    <p style="text-align:left">{% if A1c_t == -1 %} **Decisions should be based on avoiding hypoglycemia and symptomatic hyperglycemia. {% endif %}</p>
+
+    <!-- PE TABLE-->
+    <h3>Physical Examination</h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Personalized Target</th>
+                <th scope="col">Latest Data</th>
+                <th scope="col">Date</th>
+                <th scope="col">Follow-up Date</th>
+                <!-- Function: Add New data + Trend +/- Suggestions Review -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Body Weight</th>
+                <td>
+                    Ideal body weight: {{lower_BW }} - {{ upper_BW }} kg <br>
+                    Your goal: {% if BW_t == -1 %} <br>Keep current weight {% else %} {{ BW_t }} kg {% endif %}
+                </td>
+                <td>{{ BW_l }} kg</td>
+                <td>{{ BW_d }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">Blood Pressure</th>
+                <td>{{ BP }} mmHg</td>
+                <td>
+                    {{ SBP_l }}{% if SBP_l != "No data" %}/{{ DBP_l }} mmHg{% endif %}
+                </td>
+                <td>{{ BP_d }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">Neuropathy Screening (MNSI)</th>
+                <td>{% if MNSI_l|float <= 2.5 or MNSI_l == "No data" %} < 2.5 points {% else %} less than {{ MNSI_l }} points {% endif %} </td>
+                <td>{{ MNSI_l }}
+                    {% if MNSI_l != "No data" %} points{% endif %}
+                </td>
+                <td>{{ MNSI_d }}</td>
+                <td>{{ MNSI_f }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Ophthalmic Examination</th>
+                <td>
+                    {% if OPH_l == "Normal" or OPH_l == "No data" %} Normal
+                    {% else %} Maintain current status
+                    {% endif %}
+                </td>
+                <td>
+                    {% if OPH_l in ("C","CP","CNP") %}
+                    Clinical significant macular edema <br>
+                    {% endif %}
+                    {% if OPH_l in ("P","CP") %}
+                    Proliferative diabetic retinopathy <br>
+                    {% endif %}
+                    {% if OPH_l in ("NP","CNP") %}
+                    Non-proliferative diabetic retinopathy <br>
+                    {% endif %}
+                    {% if OPH_l == "Normal" or OPH_l == "No data" %}
+                    {{ OPH_l }}
+                    {% endif %}
+                </td>
+                <td>{{ OPH_d }}</td>
+                <td>{{ OPH_f }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<!-- Vaccine TABLE/ if you have free time...
+    <h3>Vaccine Records</h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Personalized Target</th>
+                <th scope="col">Latest Data</th>
+                <th scope="col">Functions</th>
+                <!-- Function: Add New data + Trend +/- Suggestions Review
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Pneumococcus vaccine</th>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">Influenza vaccine</th>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+-->
+{% endblock %}

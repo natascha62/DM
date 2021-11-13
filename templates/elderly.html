@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Additional Information for Elderly
+{% endblock %}
+
+{% block main %}
+    <!-- Show ADL options -->
+    <script>
+        function display(val) {
+        	if (val == 3) {
+            	document.getElementById("ADL_item").style.visibility = "visible";}
+            else {document.getElementById("ADL_item").style.visibility = "hidden";}
+        };
+
+    </script>
+
+    <h2 style="text-align:left">Additional Information Required:</h2>
+
+    <form action="/elderly" method="post" style="text-align:left">
+        <!-- Get Comorbidity -->
+        <fieldset class="form-group">
+            <div class="row">
+                <label class="col-sm-6 col-form-label pt-0">Do you have any of the following illness? </label>
+                <div class="col-sm-10">
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="arthritis" name="arthritis" value=1>
+                        <label class="form-check-label" for="arthtitis">Arthritis</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="depression" name="depression" value=1>
+                        <label class="form-check-label" for="depression">Depression</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="falls" name="falls" value=1>
+                        <label class="form-check-label" for="falls">Falls</label>
+                    </div>
+                </div>
+            </div>        
+        </fieldset><br>
+
+        <!-- Cancer status -->
+        <div class="form-group">
+              <label for="cancer">History of malignancy disease:</label><br>
+              <select name="cancer" id="cancer" class="form-control" style="width: 40em">
+                <option value=0>No</option>
+                <option value=1>Yes (Under control)</option>
+                <option value=2>Yes (Uncontrolled metastatic cancer)</option>
+              </select>
+        </div><br>
+
+        <!-- CHF status -->
+        <!-- CHF Yes but unknown stage, value==100 -->
+        <div class="form-group">
+              <label for="CHF">History of heart failure:</label><br>
+              <select name="CHF" id="CHF" class="form-control" style="width: 40em">
+                <option value=0>No</option>
+                <option value=1>Yes (No limitation of physical activity)</option>
+                <option value=2>Yes (Slight limitation of physical activity)</option>
+                <option value=3>Yes (Marked limitation of physical activity)</option>
+                <option value=4>Yes (Unable to carry on any physical activity without discomfort)</option>
+              </select>
+        </div><br>
+
+        <!-- Lung status -->
+        <div class="form-group">
+              <label for="lung">History of lung disease:</label><br>
+              <select name="lung" id="lung" class="form-control" style="width: 40em">
+                <option value=0>No</option>
+                <option value=1>Yes (Oxygen-independent)</option>
+                <option value=2>Yes (Oxygen-dependent)</option>
+              </select>
+        </div><br>
+
+        <!-- CKD status -->
+        <div class="form-group">
+              <label for="CKD">History of chronic kidney disease:</label><br>
+              <select name="CKD" id="CKD" class="form-control" style="width: 40em">
+                {% if ckd != 100 %}
+                <option value=0>No</option>
+                {% endif %}
+                <option value=100>Yes (Stage Unknown)</option>
+                <option value=1>Yes (Stage 1)</option>
+                <option value=2>Yes (Stage 2)</option>
+                <option value=3>Yes (Stage 3)</option>
+                <option value=4>Yes (Stage 4)</option>
+                <option value=5>Yes (Stage 5)</option>
+                <option value=6>Yes (Under renal replacement therapy)</option>
+              </select>
+        </div><br>
+
+        <!-- Functional status -->
+        <div class="form-group">
+            <label for="function">Your activity of daily living:</label><br>
+            <select name="function" id="function" onchange="display(this.value)" class="form-control" style="width: 40em">
+                <option value=0>Totally independent</option>
+                <option value=1>Totally dependent</option>
+                <option value=2>Long-term care resident</option>
+                <option value=3>Partially dependent</option>
+            </select>
+        </div>
+
+        <div id="ADL_item" style="visibility:hidden">
+                <h6>Please select the items if assistance is needed:</h6>
+                <input type="checkbox" id="bathing" name="bathing" value="1">
+                <label for="bathing">Bathing</label>  
+                <input type="checkbox" id="dressing" name="dressing" value="1">
+                <label for="dressing">Dressing</label>  
+                <input type="checkbox" id="grooming" name="grooming" value="1">
+                <label for="grooming">Grooming</label>  
+                <input type="checkbox" id="mouthcare" name="mouthcare" value="1">
+                <label for="mouthcare">Mouth care</label>  
+                <input type="checkbox" id="toileting" name="toileting" value="1">
+                <label for="toileting">Toileting</label>
+                <input type="checkbox" id="transfer" name="transfer" value="1">
+                <label for="transfer">Transferring bed/chair</label>
+                <input type="checkbox" id="walking" name="walking" value="1">
+                <label for="walking">Walking</label>
+                <input type="checkbox" id="climbstair" name="climbstair" value="1">
+                <label for="climbstair">Climbing stairs</label>
+                <input type="checkbox" id="eating" name="eating" value="1">
+                <label for="eating">Eating</label>
+        </div>
+
+
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{% endblock %}

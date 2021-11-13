@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Set patient
+{% endblock %}
+
+{% block main %}
+    <!-- Patient not set yet -->
+    {% if session.user_id == "doctor" and Patient == "-1" %}
+    Please enter patient ID: <br>
+    <form action="/patient" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="patient" id="patient" placeholder="Patient ID number" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    
+    <!-- Patient already set, give user option to change patient -->
+    {% elif session.user_id == "doctor" and Patient !="-1" %}
+    Current patient ID: {{ Patient }}<br>
+    <form action="/patient" method="post">
+        <div class="form-group" style="visibility:hidden">
+            <input autocomplete="off" autofocus class="form-control" name="patient" id="patient" placeholder="Patient ID number" type="text" value=-1>
+        </div>
+        <button class="btn btn-primary" type="submit">Change to different patient</button>
+    </form>    
+    
+    {% endif %}
+
+{% endblock %}

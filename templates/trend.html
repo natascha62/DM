@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Trend
+{% endblock %}
+
+{% block main %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+    <div>
+      <form action="/trend" method="post" style="text-align:left">
+        <label for="item">Please select the data:</label>
+        <select name="item" id="item" onchange="this.form.submit()">
+          <option value="" selected disabled>Choose here</option>
+          <option value="A1c">HbA1c</option>
+          <option value="LDL">LDL</option>
+          <option value="HDL">HDL</option>
+          <option value="Cre">Creatinine</option>
+          <option value="BW">Body weight</option>
+        </select>
+      </form>
+    </div>
+
+    <!-- This is the place for the plot -->
+    <div>
+      <h3 id="Y"></h3>
+      <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+    </div>
+    
+<script>
+  var Y = {{ Y | tojson }};
+  var yValues = {{ yValues | tojson }};
+  var xValues = {{ xValues | tojson }};
+  var Target = {{ Target | tojson }};
+
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{
+        fill: false,
+        pointRadius: 4,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.3)",
+        data: yValues,
+        tension: 0,
+        borderWidth: 5
+      }, 
+      {
+        fill: false,
+        pointRadius: 0,
+        backgroundColor: "rgba(192,192,192,0.8)",
+        borderColor: "rgba(192,192,192,0.8)",
+        data: Target,
+        tension: 0,
+        borderDash: [15,5],
+        borderWidth: 10
+      }, 
+      ]
+    },
+    options: {
+      title: {display: true, text: Y},
+      legend: {display: false},
+      scales: {
+        xAxes: [{
+          type: 'time', 
+          time:{
+            minUnit: 'day',
+            displayFormats: {
+              quarter: 'YYYY-MMM-DD'
+              }
+          }}]
+      }
+    }
+  });
+</script>
+
+
+
+{% endblock %}
