@@ -9,7 +9,7 @@ from functools import wraps
 
 def update_CKD(Sex, Age):
     ID = session["user_id"]
-    db = SQL("sqlite:///data.db")
+    db = SQL(os.getenv("postgres://ddbkgaxnissqhx:25074932dc176fee4fc964ef20d681f522b3bac67b747fdbc5839bd5a27f39ff@ec2-34-203-182-172.compute-1.amazonaws.com:5432/d272qc35s71bfm"))
     
     # Request proteinuria in records for each date, 0=no, 1=stick negative only, 2=stick <=2+, 3=stick >=3+, 4=UACR+, 5=UPCR+
     Data = db.execute("SELECT proteinuria FROM records WHERE id=? AND NOT proteinuria=-1 ORDER BY date DESC", ID)
