@@ -1,3 +1,3 @@
 pip install gunicorn
 touch Procfile
-web: gunicorn application:app
+web:gunicorn application:app
