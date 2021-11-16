@@ -10,9 +10,6 @@ from datetime import datetime, timedelta
 import json
 from helpers import update_CKD
 
-from flask_apscheduler import APScheduler
-from apscheduler.schedulers.background import BackgroundScheduler
-from flask_mail import Mail, Message
 
 # Configure application
 app = Flask(__name__)
