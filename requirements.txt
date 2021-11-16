@@ -5,3 +5,5 @@ apscheduler>=3.2.0,<4.0.0
 requests
 gunicorn
 psycopg2
+Jinja2
+Werkzeug
