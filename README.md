@@ -1,8 +1,6 @@
-# Diabetes Mellitus Management System
+# CS50 Final Project - Diabetes Mellitus Management System
 #### Video Demo:  <URL HERE>
 #### Description:
-
-# CS50 Final Project - Homework framework
 
 The project is a webpage where teachers can create assignments for students. The implementation is fairly simple, to keep the project scope in check. I wanted to make a project like this to expand my knowledge of Node JS and of techniques like buffer piping from database to client, role based authentications, etc.
 
