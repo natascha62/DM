@@ -65,17 +65,17 @@ Based on these factors, personalized control targets will be determined for each
 
 The target and latest data will be shown on a large table. Suggested checkup date will also be calculated automatically.
 
-## Records
+### Records
   
 Once the patients log in, they can update recent test results. These data will be stored in the database.
 Doctors can update every patient's data after they key in patient's ID on the "set patient" page.
   
-## Trend
+### Trend
   
 This page will request serial data from the database and presented the trend by a line chart.
 Items that could be request for trend includes: HbA1c, body weight, blood creatinine and lipid profile.
 
-## Automatic e-mail notification
+### Automatic e-mail notification
   
 This function is built with APScheduler. The task runs every day.
 It will send notification e-mail to the patients 7 days prior to the suggested checkup date.
