@@ -85,7 +85,7 @@ It will send notification e-mail to the patients 7 days prior to the suggested c
 ## How to use
 
 The website is hosted by PythonAnywhere
-  [natascha62.pythonanywhere.com](natascha62.pythonanywhere.com)
+  [natascha62.pythonanywhere.com](https://natascha62.pythonanywhere.com/)
 
 
 
