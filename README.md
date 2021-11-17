@@ -2,8 +2,25 @@
 #### Video Demo:  <URL HERE>
 #### Website link:
 
+  
+## Authors  
 
+Tsai, Wan-Chen - natascha62@gmail.com
+  
+Lo, Ta-Hsuan - b95401010@ntu.edu.tw
+  
+## About the website
 
+This is my final project for [Harvard CS50x] course. It's a website for doctors and patients to manage diabetes mellitus. 
+  
+Patients with diabetes mellitus should undergo regular checkup and try to keep these indicators in target range. However, the target ranges are different for each patient according to their age and underlying diseases, such as coronary artery disease, chronic kidney disease, and hypertension...etc. By registering to this website and entering personal information, patients can get their personalized treatment targets.
+  
+In addition, the duration between each checkup also differs according to previous test results. The website will automatically calculate the latest checkup date for each patient. Furthermore, the system will send an e-mail 7 days prior to the checkup date automatically to notify the patient.
+  
+Once the patient provides the test results, the website can show the chart of the trend in these data. 
+
+For doctors, the "set patient" page is unlocked so they can access or record patients' data.
+  
 
 ## How the webpage works?
 
@@ -40,20 +57,7 @@ Database stores all users, homework, student submissions. The tables, like stude
   
   
   
-## Authors  
 
-Tsai, Wan-Chen - natascha62@gmail.com
-Lo, Ta-Hsuan - b95401010@ntu.edu.tw
-  
-## About the website
-
-This is my final project for [Harvard CS50x] course. It's a website for doctors and patients to manage diabetes mellitus. 
-  
-Patients with diabetes mellitus should undergo regular checkup and try to keep these indicators in target range. However, the target ranges are different for each patient according to their age and underlying diseases, such as coronary artery disease, chronic kidney disease, and hypertension...etc. By registering to this website and entering personal information, patients can get their personalized treatment targets.
-  
-In addition, the duration between each checkup also differs according to previous test results. The website will automatically calculate the latest checkup date for each patient. Furthermore, the system will send an e-mail 7 days prior to the checkup date automatically to notify the patient.
-  
-Once the patient provides the test results, the website can show the chart of the trend in these data. 
 
 
 ## How to use
