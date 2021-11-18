@@ -84,20 +84,19 @@ It will send notification e-mail to the patients 7 days prior to the suggested c
 
 ## How to use
 
-The website is hosted by PythonAnywhere
-  [natascha62.pythonanywhere.com](https://natascha62.pythonanywhere.com/)
+The website is hosted by PythonAnywhere:
+[natascha62.pythonanywhere.com](https://natascha62.pythonanywhere.com/)
 
 
 
 
 ## Possible improvements
 
-As all applications this one can also be improved. Possible improvements:
-
-- Have administrator account which confirms user identity, so that student could not register as a teacher
-- Ability to change account details
-- Have a way for teacher to upload videos to explain the assignment
-- Notificaitons to email about new homeworks or submissions
+- Have a way for users to change their personal information, such as e-mail and phone numbers.
+- Have administrator account which confirms user identity so doctors could register their own accounts.
+- Ability to upload multiple blood test results on different date at the same time.
+- Direct connection with Taiwanese National Health Insurance database so the test results could be downloaded and uploaded automatically. (An API might help?)
+  
   
 ## Acknowledgements
 
