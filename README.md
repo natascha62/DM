@@ -65,7 +65,7 @@ Based on these factors, personalized control targets will be determined for each
 
 The target and latest data will be shown on a large table. Suggested checkup date will also be calculated automatically.
 
-  ![截圖 2021-11-18 上午10 31 45](https://user-images.githubusercontent.com/81509261/142341249-c2c54062-c085-4cc5-afe1-64a2a4451b2f.png)
+      ![截圖 2021-11-18 上午10 31 45](https://user-images.githubusercontent.com/81509261/142341249-c2c54062-c085-4cc5-afe1-64a2a4451b2f.png)
 
   
 ### Records
@@ -73,7 +73,7 @@ The target and latest data will be shown on a large table. Suggested checkup dat
 Once the patients log in, they can update recent test results. These data will be stored in the database.
 Doctors can update every patient's data after they key in patient's ID on the "set patient" page.
   
-  ![截圖 2021-11-18 上午10 42 14](https://user-images.githubusercontent.com/81509261/142341931-07b2e9a0-1ee7-4a5e-994d-35204a6464dc.png)
+      ![截圖 2021-11-18 上午10 42 14](https://user-images.githubusercontent.com/81509261/142341931-07b2e9a0-1ee7-4a5e-994d-35204a6464dc.png)
 
   
 ### Trend
@@ -81,7 +81,8 @@ Doctors can update every patient's data after they key in patient's ID on the "s
 This page will request serial data from the database and presented the trend by a line chart.
 Items that could be request for trend includes: HbA1c, body weight, blood creatinine and lipid profile.
 
-  
+      ![截圖 2021-11-18 上午10 35 37](https://user-images.githubusercontent.com/81509261/142342095-bd40d0f3-39a2-4442-855d-b729e8771e47.png)
+
   
 ### Automatic e-mail notification
   
