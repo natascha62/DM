@@ -73,11 +73,16 @@ The target and latest data will be shown on a large table. Suggested checkup dat
 Once the patients log in, they can update recent test results. These data will be stored in the database.
 Doctors can update every patient's data after they key in patient's ID on the "set patient" page.
   
+  ![截圖 2021-11-18 上午10 42 14](https://user-images.githubusercontent.com/81509261/142341931-07b2e9a0-1ee7-4a5e-994d-35204a6464dc.png)
+
+  
 ### Trend
   
 This page will request serial data from the database and presented the trend by a line chart.
 Items that could be request for trend includes: HbA1c, body weight, blood creatinine and lipid profile.
 
+  
+  
 ### Automatic e-mail notification
   
 This function is built with APScheduler. The task runs every day.
