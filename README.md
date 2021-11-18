@@ -65,6 +65,9 @@ Based on these factors, personalized control targets will be determined for each
 
 The target and latest data will be shown on a large table. Suggested checkup date will also be calculated automatically.
 
+  ![截圖 2021-11-18 上午10 31 45](https://user-images.githubusercontent.com/81509261/142341249-c2c54062-c085-4cc5-afe1-64a2a4451b2f.png)
+
+  
 ### Records
   
 Once the patients log in, they can update recent test results. These data will be stored in the database.
