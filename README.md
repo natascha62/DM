@@ -54,9 +54,8 @@ After entering these data, the website will automatically update their personali
   
 For doctors, they should log in the webpage with "doctor" as ID. Each route check if the user's identity. If and only if the user log in with "doctor", he or she can access patients' data.
   
-  ![截圖 2021-11-18 上午10 46 00](https://user-images.githubusercontent.com/81509261/142342689-8b6a7992-7445-4d54-9de5-edcb0632109a.png){:width="50%"}
-  ![截圖 2021-11-18 上午10 48 01](https://user-images.githubusercontent.com/81509261/142342707-e621cc84-d134-4d42-8df8-2b4cbc933531.png | width=100)
-
+  ![截圖 2021-11-18 上午10 46 00](https://user-images.githubusercontent.com/81509261/142342689-8b6a7992-7445-4d54-9de5-edcb0632109a.png)
+  
   
 ### Database
 
